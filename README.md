@@ -13,7 +13,7 @@ Dashboard for internet provider control application
 - Victory
 
 # Preview
-<img src="https://github.com/rodrigogaraujo/web_gobarber/blob/master/gobarber.png" width="450"/>
+<img src="https://github.com/rodrigogaraujo/dashboard_provider_internet/blob/master/dashboard.png" width="450"/>
 
 # Contact
 rodrigoaraujo990@gmail.com
