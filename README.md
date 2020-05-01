@@ -14,6 +14,7 @@ Dashboard for internet provider control application
 
 # Preview
 <img src="https://github.com/rodrigogaraujo/dashboard_provider_internet/blob/master/dashboard.png" width="450"/>
+<img src="https://github.com/rodrigogaraujo/dashboard_provider_internet/blob/master/responsive.png" width="450"/>
 
 # Contact
 rodrigoaraujo990@gmail.com
