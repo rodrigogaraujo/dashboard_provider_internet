@@ -8,6 +8,11 @@ import CircleProgressBar from "../../components/CircleProgressBar";
 import SidebarMenu from "../../components/SidebarMenu";
 import DetailsFloating from "../../components/DetailsFloating";
 
+interface ContainerPropsSideMenu {
+    isVisible: boolean;
+    isVisibleButton: boolean;
+}
+
 const Home: React.FC = () => {
     const [isOpened, setIsOpened] = useState(false);
 
@@ -38,11 +43,13 @@ const Home: React.FC = () => {
 
     return (
         <Container>
-            <SidebarMenu isVisible={isOpened} />
+            <section className="side-menu">
+                <SidebarMenu isVisible={isOpened} />
+            </section>
             <SideContent isVisible={isOpened}>
                 <header>
                     <ul>
-                        <li>
+                        <li className="open-menu">
                             <a href="" onClick={(e) => handleHideMenu(e)}>
                                 <FiMenu size={26} />
                             </a>
@@ -51,6 +58,7 @@ const Home: React.FC = () => {
                             <span>Home</span>
                         </li>
                     </ul>
+                    <div className="cover-back"></div>
                     <section className="detail-day">
                         <div className="detail-day-content">
                             <div className="left-detail">

@@ -6,14 +6,22 @@ interface ContainerProps {
 
 const Container = styled.div`
     display: flex;
+
+    .side-menu {
+        position: relative;
+    }
 `;
 
 const SideContent = styled.div<ContainerProps>`
     max-width: calc(100% - 250px);
+    margin-left: 250px;
+
+    transition: all 0.3s ease;
     ${(props) =>
         props.isVisible &&
         css`
             max-width: 100%;
+            margin-left: 0;
         `}
     width: 100%;
 
@@ -28,6 +36,22 @@ const SideContent = styled.div<ContainerProps>`
             flex-direction: row;
             align-items: center;
             border-bottom: 0.8px solid #025940;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            position: fixed;
+            z-index: 999;
+            width: 100%;
+
+            background: -webkit-gradient(
+                    linear,
+                    left top,
+                    right top,
+                    from(#025940),
+                    to(#01402e)
+                )
+                no-repeat;
+            background: -moz-linear-gradient(left, #025940, #01402e);
+            filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, 
+                StartColorStr='#025940', EndColorStr='#01402E');
 
             li {
                 a {
@@ -42,6 +66,14 @@ const SideContent = styled.div<ContainerProps>`
 
                     svg {
                         padding-top: 5px;
+
+                        @media screen and (max-width: 680px) {
+                            ${(props) =>
+                                props.isVisible &&
+                                css`
+                                    display: none;
+                                `}
+                        }
                     }
                 }
 
@@ -56,6 +88,7 @@ const SideContent = styled.div<ContainerProps>`
             border-bottom: 0.8px solid #025940;
             width: 100%;
             height: 160px;
+            margin-top: 70px;
             display: flex;
             flex-direction: row;
             position: relative;
@@ -123,6 +156,35 @@ const SideContent = styled.div<ContainerProps>`
         background: -moz-linear-gradient(left, #025940, #01402e);
         filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, 
                 StartColorStr='#025940', EndColorStr='#01402E');
+
+        @media screen and (max-width: 900px) {
+            ${(props) =>
+                props.isVisible &&
+                css`
+                    max-width: (100% - 230px);
+                    margin-left: 230px;
+                `}
+        }
+
+        @media screen and (max-width: 680px) {
+            ${(props) =>
+                props.isVisible &&
+                css`
+                    max-width: (100% - 230px);
+                    margin-left: 230px;
+
+                    .cover-back {
+                        position: fixed;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        background: #000;
+                        z-index: 998;
+                        opacity: 0.5;
+                    }
+                `}
+        }
     }
 
     .content {
@@ -181,26 +243,34 @@ const SideContent = styled.div<ContainerProps>`
             }
 
             @media screen and (max-width: 900px) {
-                .os-solved {
-                    display: block;
-                }
+                ${(props) =>
+                    props.isVisible &&
+                    css`
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+
+                        .graphic-container {
+                            margin-left: 250px;
+                        }
+                        .os-solved + .graphic-container {
+                            margin-left: 250px;
+                            margin-top: 10px;
+                        }
+                    `}
             }
 
             @media screen and (max-width: 840px) {
-                .os-solved {
-                    display: none;
-                }
-                .os-solved + .graphic-container {
-                }
             }
 
-            @media screen and (max-width: 620px) {
+            @media screen and (max-width: 680px) {
                 flex-direction: column;
                 .graphic-container {
-                    width: 100%;
+                    margin-left: 20px;
+                    max-width: 500px;
                 }
                 .os-solved + .graphic-container {
-                    width: 100%;
+                    margin-left: 20px;
                     margin-top: 10px;
                 }
             }
@@ -244,6 +314,7 @@ const SideContent = styled.div<ContainerProps>`
 
     @media screen and (max-width: 900px) {
         max-width: 100%;
+        margin-left: 0;
     }
 `;
 

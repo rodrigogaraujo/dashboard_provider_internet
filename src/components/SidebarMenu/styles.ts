@@ -1,11 +1,21 @@
 import styled, { css } from "styled-components";
 
-interface ContainerProps {
+interface ContainerPropsSideMenu {
     isVisible: boolean;
+    isVisibleButton: boolean;
 }
 
-const Container = styled.aside<ContainerProps>`
+const Container = styled.aside<ContainerPropsSideMenu>`
     display: flex;
+    max-width: 250px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    background: #01402e;
+
     ${(props) =>
         props.isVisible &&
         css`
@@ -13,8 +23,6 @@ const Container = styled.aside<ContainerProps>`
         `}
 
     flex-direction: column;
-    max-width: 250px;
-    width: 100%;
 
     > img {
         align-self: center;
@@ -29,17 +37,53 @@ const Container = styled.aside<ContainerProps>`
             props.isVisible &&
             css`
                 display: flex;
+                max-width: 230px;
+                transition: all 0.3s ease;
+            `}
+
+        ${(props) =>
+            props.isVisibleButton &&
+            css`
+                display: none;
             `}
     }
+    transition: all 0.3s ease;
 `;
 
-const UserDescription = styled.section`
+const UserDescription = styled.section<ContainerPropsSideMenu>`
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-top: 0.8px solid #025940;
     border-bottom: 0.8px solid #025940;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    position: relative;
+
+    > a {
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        right: 5px;
+        text-decoration: none;
+        color: #d5e2f2;
+        margin-left: 20px;
+        transition: color 2s;
+
+        &:hover {
+            color: #9fbf2c;
+        }
+
+        svg {
+            padding-top: 5px;
+
+            @media screen and (max-width: 900px) {
+                visibility: visible;
+            }
+        }
+    }
+
     img {
         width: 70px;
         border-radius: 50%;
@@ -114,7 +158,6 @@ const MenuItensSide = styled.section`
 
             &:hover {
                 background: #025940;
-                border-radius: 0 10px 10px 0;
                 color: #9fbf2c;
                 svg {
                     color: #9fbf2c;
@@ -136,7 +179,6 @@ const MenuItensSide = styled.section`
 
         .active {
             background: #025940;
-            border-radius: 0 10px 10px 0;
             color: #9fbf2c;
             svg {
                 color: #9fbf2c;

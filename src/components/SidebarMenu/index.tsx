@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     FiSettings,
     FiMail,
     FiUser,
     FiLogOut,
     FiChevronDown,
+    FiX,
 } from "react-icons/fi";
 
 import { Container, UserDescription, MenuItensSide } from "./styles";
@@ -17,10 +18,27 @@ interface ContainerProps {
 }
 
 const SidebarMenu: React.FC<ContainerProps> = (props) => {
+    const [isOpened, setIsOpened] = useState(false);
+    const [isOpenedButton, setIsOpenedButton] = useState(false);
+
+    function handleHideMenu(e: any) {
+        e.preventDefault();
+
+        props.isVisible ? setIsOpened(false) : setIsOpened(true);
+        setIsOpenedButton(!!props.isVisible);
+
+        console.log(isOpenedButton, isOpened);
+    }
     return (
-        <Container {...props}>
+        <Container {...props} isVisibleButton={isOpenedButton}>
             <img src={logoImg} alt="G3 infotech" />
-            <UserDescription>
+            <UserDescription
+                isVisible={isOpened}
+                isVisibleButton={isOpenedButton}
+            >
+                <a href="" onClick={(e) => handleHideMenu(e)}>
+                    <FiX size={26} />
+                </a>
                 <img src={userImg} alt="Rodrigo Gomes" />
                 <h1>Rodrigo Gomes</h1>
                 <p>Administrador</p>
