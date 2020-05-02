@@ -54,10 +54,13 @@ const SideContent = styled.div<ContainerProps>`
                 StartColorStr='#025940', EndColorStr='#01402E');
 
             li {
+                margin-left: 20px;
+                & + li {
+                    margin-left: 0px;
+                }
                 a {
                     text-decoration: none;
                     color: #d5e2f2;
-                    margin-left: 20px;
                     transition: color 2s;
 
                     &:hover {
@@ -77,70 +80,23 @@ const SideContent = styled.div<ContainerProps>`
                     }
                 }
 
+                .close-menu {
+                    display: none;
+                    @media screen and (max-width: 680px) {
+                        display: none;
+                        ${(props) =>
+                            props.isVisible &&
+                            css`
+                                display: block;
+                                top: 29%;
+                                left: 3%;
+                            `}
+                    }
+                }
+
                 span {
                     font-size: 1.3em;
                     margin-left: 16px;
-                }
-            }
-        }
-
-        > .detail-day {
-            border-bottom: 0.8px solid #025940;
-            width: 100%;
-            height: 160px;
-            margin-top: 70px;
-            display: flex;
-            flex-direction: row;
-            position: relative;
-
-            .detail-day-content {
-                display: flex;
-                width: 100%;
-                flex-direction: row;
-                align-items: center;
-
-                .left-detail {
-                    width: 50%;
-                    display: flex;
-
-                    h1 {
-                        padding: 10px 30px 50px 30px;
-                        font-weight: 400;
-                        font-size: 1.2em;
-                    }
-                }
-                .right-detail {
-                    width: 50%;
-                    display: flex;
-                    justify-content: flex-end;
-                    padding: 10px 20px 50px 30px;
-                    text-align: center;
-
-                    section {
-                        padding: 30px;
-                        font-weight: 400;
-
-                        h1 {
-                            color: #658c76;
-                            font-weight: 400;
-                            font-size: 1.1em;
-                            padding-bottom: 5px;
-                        }
-
-                        span {
-                            color: #d5e2f2;
-                            font-weight: 500;
-                            font-size: 1.3em;
-                        }
-
-                        .output {
-                            color: red;
-                        }
-
-                        .received {
-                            color: #9fbf2c;
-                        }
-                    }
                 }
             }
         }
@@ -181,10 +137,109 @@ const SideContent = styled.div<ContainerProps>`
                         left: 0;
                         background: #000;
                         z-index: 998;
-                        opacity: 0.5;
+                        opacity: 0.7;
                     }
                 `}
         }
+    }
+
+    .detail-day {
+        border-bottom: 0.8px solid #025940;
+        width: 100%;
+        height: 160px;
+        margin-top: 70px;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        @media screen and (max-width: 680px) {
+            ${(props) =>
+                props.isVisible &&
+                css`
+                    display: block;
+                `}
+        }
+        .detail-day-content {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            align-items: center;
+
+            .left-detail {
+                width: 50%;
+                display: flex;
+
+                h1 {
+                    padding: 10px 30px 50px 30px;
+                    font-weight: 400;
+                    font-size: 1.2em;
+                }
+
+                @media screen and (max-width: 680px) {
+                    h1 {
+                        padding: 5px 20px 40px 20px;
+                        font-size: 1em;
+                    }
+                }
+            }
+            .right-detail {
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+                padding: 10px 20px 50px 30px;
+                text-align: center;
+                section {
+                    padding: 30px;
+                    font-weight: 400;
+
+                    h1 {
+                        color: #658c76;
+                        font-weight: 400;
+                        font-size: 1.1em;
+                        padding-bottom: 5px;
+                    }
+
+                    span {
+                        color: #d5e2f2;
+                        font-weight: 500;
+                        font-size: 1.3em;
+                    }
+
+                    .output {
+                        color: red;
+                    }
+
+                    .received {
+                        color: #9fbf2c;
+                    }
+
+                    @media screen and (max-width: 680px) {
+                        padding-right: 10px;
+                        & + section {
+                            padding-right: 0;
+                        }
+                        h1 {
+                            font-size: 0.8em;
+                        }
+                        span {
+                            font-size: 0.9em;
+                        }
+                    }
+                }
+            }
+        }
+
+        background: -webkit-gradient(
+                linear,
+                left top,
+                right top,
+                from(#025940),
+                to(#01402e)
+            )
+            no-repeat;
+        background: -moz-linear-gradient(left, #025940, #01402e);
+        filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, 
+                StartColorStr='#025940', EndColorStr='#01402E');
     }
 
     .content {
@@ -195,7 +250,8 @@ const SideContent = styled.div<ContainerProps>`
             .graphic-container {
                 margin: 100px 20px 20px 20px;
                 padding: 20px;
-                max-width: 385px;
+                max-width: 380px;
+                width: 90%;
                 background: #d5e2f2;
                 transition: 0.3s;
                 color: #01402e;
@@ -251,23 +307,19 @@ const SideContent = styled.div<ContainerProps>`
                         align-items: center;
 
                         .graphic-container {
-                            margin-left: 250px;
+                            margin-left: 240px;
                         }
                         .os-solved + .graphic-container {
-                            margin-left: 250px;
                             margin-top: 10px;
                         }
                     `}
-            }
-
-            @media screen and (max-width: 840px) {
             }
 
             @media screen and (max-width: 680px) {
                 flex-direction: column;
                 .graphic-container {
                     margin-left: 20px;
-                    max-width: 500px;
+                    max-width: 480px;
                 }
                 .os-solved + .graphic-container {
                     margin-left: 20px;

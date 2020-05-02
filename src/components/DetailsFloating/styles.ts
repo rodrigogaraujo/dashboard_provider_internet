@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Container = styled.section`
+interface ContainerProps {
+    isVisible: boolean;
+}
+
+const Container = styled.section<ContainerProps>`
     position: absolute;
     width: 100%;
     bottom: -100px;
@@ -13,7 +17,8 @@ const Container = styled.section`
             text-align: center;
             border-radius: 5px;
             background: #d5e2f2;
-            width: 275px;
+            max-width: 345px;
+            width: 100%;
             height: 120px;
             margin: 30px 15px 30px 15px;
             border: 1px solid #658c76;
@@ -21,23 +26,12 @@ const Container = styled.section`
             flex-direction: row;
             box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.2);
 
-            .left-floating-detail {
-                flex-basis: 33%;
-                svg {
-                    color: #d5e2f2;
-                    border: 1px solid #658c76;
-                    margin: 10px;
-                    padding: 10px;
-                    border-radius: 5px;
-                    background: -moz-linear-gradient(left, #1e3c72, #2a5298);
-                }
-            }
-
-            .right-floating-detail {
+            .floating-detail {
                 display: flex;
                 flex-direction: column;
                 flex-basis: 67%;
                 color: #045159;
+
                 h1 {
                     font-weight: 400;
                 }
@@ -48,6 +42,15 @@ const Container = styled.section`
                 p {
                     margin-top: 10px;
                     font-size: 1.8em;
+                }
+
+                @media screen and (max-width: 1000px) {
+                    span {
+                        font-size: 1em;
+                    }
+                    p {
+                        font-size: 1.3em;
+                    }
                 }
             }
         }

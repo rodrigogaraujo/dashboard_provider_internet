@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 
 interface ContainerPropsSideMenu {
     isVisible: boolean;
-    isVisibleButton: boolean;
 }
 
 const Container = styled.aside<ContainerPropsSideMenu>`
@@ -15,6 +14,7 @@ const Container = styled.aside<ContainerPropsSideMenu>`
     top: 0;
     left: 0;
     background: #01402e;
+    transition: all 0.3s ease;
 
     ${(props) =>
         props.isVisible &&
@@ -39,12 +39,6 @@ const Container = styled.aside<ContainerPropsSideMenu>`
                 display: flex;
                 max-width: 230px;
                 transition: all 0.3s ease;
-            `}
-
-        ${(props) =>
-            props.isVisibleButton &&
-            css`
-                display: none;
             `}
     }
     transition: all 0.3s ease;

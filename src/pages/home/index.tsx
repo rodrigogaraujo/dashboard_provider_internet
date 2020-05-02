@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiMenu, FiBarChart2 } from "react-icons/fi";
+import { FiMenu, FiBarChart2, FiX } from "react-icons/fi";
 import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory";
 
 import { Container, SideContent } from "./styles";
@@ -55,34 +55,36 @@ const Home: React.FC = () => {
                             </a>
                         </li>
                         <li>
+                            <a href="" onClick={(e) => handleHideMenu(e)}>
+                                <FiX size={26} className="close-menu" />
+                            </a>
+                        </li>
+                        <li>
                             <span>Home</span>
                         </li>
                     </ul>
                     <div className="cover-back"></div>
-                    <section className="detail-day">
-                        <div className="detail-day-content">
-                            <div className="left-detail">
-                                <h1>Olá Rodrigo, bem vindo de volta!</h1>
-                            </div>
-                            <div className="right-detail">
-                                <section>
-                                    <FiBarChart2
-                                        size={20}
-                                        className="received"
-                                    />
-                                    <h1>Entradas</h1>
-                                    <span>R$ 53,00</span>
-                                </section>
-                                <section>
-                                    <FiBarChart2 size={20} className="output" />
-                                    <h1>Saídas</h1>
-                                    <span>R$ 53,00</span>
-                                </section>
-                            </div>
-                        </div>
-                        <DetailsFloating />
-                    </section>
                 </header>
+                <section className="detail-day">
+                    <div className="detail-day-content">
+                        <div className="left-detail">
+                            <h1>Olá Rodrigo, bem vindo de volta!</h1>
+                        </div>
+                        <div className="right-detail">
+                            <section>
+                                <FiBarChart2 size={15} className="received" />
+                                <h1>Entradas</h1>
+                                <span>R$ 53,00</span>
+                            </section>
+                            <section>
+                                <FiBarChart2 size={15} className="output" />
+                                <h1>Saídas</h1>
+                                <span>R$ 53,00</span>
+                            </section>
+                        </div>
+                    </div>
+                    <DetailsFloating isVisible={isOpened} />
+                </section>
                 <section className="content">
                     <div className="graphics">
                         <section className="graphic-container">
